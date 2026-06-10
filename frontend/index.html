@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareCaller AI</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge">CC</div>
+        <div>
+          <h1>CareCaller</h1>
+          <p>No patient should feel unsupported between appointments.</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#hero">Overview</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#architecture">Architecture</a>
+      </nav>
+      <div class="side-card">
+        <h3>Built for the hackathon problem</h3>
+        <ul>
+          <li>Works with real uploaded audio</li>
+          <li>Captures symptoms, meds, dosages</li>
+          <li>Routes important cases fast</li>
+          <li>Stores patient call timeline</li>
+        </ul>
+      </div>
+    </aside>
+    <main class="main">
+      <section id="hero" class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Healthcare voice support between appointments</span>
+          <h2>Real phone-call intelligence for patient follow-up, triage, and care continuity.</h2>
+          <p>CareCaller turns raw patient audio into structured clinical updates. It transcribes real audio, detects medications and symptoms, prioritizes risk, and builds a timeline staff can actually use.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#demo">Try live audio</a>
+            <a class="btn btn-secondary" href="#architecture">See architecture</a>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="stat-grid">
+            <div class="stat-card"><span class="stat-label">Input</span><strong>Real Audio</strong><p>Microphone or uploaded file</p></div>
+            <div class="stat-card"><span class="stat-label">Output</span><strong>Structured Triage</strong><p>Transcript, entities, routing</p></div>
+            <div class="stat-card"><span class="stat-label">Use Case</span><strong>Between Visits</strong><p>Refills, side effects, symptoms</p></div>
+            <div class="stat-card"><span class="stat-label">Focus</span><strong>Healthcare STT</strong><p>Medical terms and numerics</p></div>
+          </div>
+        </div>
+      </section>
+      <section id="demo" class="card">
+        <div class="section-head">
+          <div><span class="eyebrow">Live product demo</span><h3>Upload real audio and run the pipeline</h3></div>
+          <div id="apiStatus" class="pill pill-neutral">Checking backend...</div>
+        </div>
+        <div class="demo-grid">
+          <div class="panel">
+            <label for="patientNameInput">Patient</label>
+            <input id="patientNameInput" type="text" list="patientSuggestions" placeholder="Type or create a patient name" />
+            <datalist id="patientSuggestions"></datalist>
+            <select id="patientSelect" hidden></select>
+            <label for="scenarioInput">Call label</label>
+            <input id="scenarioInput" type="text" placeholder="Medication refill, side effect check-in, etc." />
+            <label for="audioFile">Audio file</label>
+            <input id="audioFile" type="file" accept="audio/*" />
+            <div class="recorder">
+              <button id="recordBtn" class="btn btn-secondary" type="button">Start recording</button>
+              <span id="recordStatus">No recording</span>
+            </div>
+            <button id="runBtn" class="btn btn-primary full-width" type="button">Run CareCaller</button>
+            <p class="helper-text">Use any spoken English audio file. The backend converts it to 16k WAV, transcribes it, extracts important healthcare details, and stores the call in the patient timeline.</p>
+          </div>
+          <div class="panel output-panel">
+            <div class="output-block"><h4>Raw transcript</h4><pre id="transcriptOutput">Waiting for audio...</pre></div>
+            <div class="output-block"><h4>Normalized transcript</h4><pre id="normalizedOutput">Waiting for processing...</pre></div>
+            <div class="output-block"><h4>Extracted entities</h4><div id="entitiesOutput" class="chips"></div></div>
+            <div class="output-block"><h4>Analysis notes</h4><pre id="analysisNotesOutput">Waiting for processing...</pre></div>
+            <div class="output-block"><h4>Triage decision</h4><div id="decisionOutput" class="decision-card"><span class="pill pill-neutral">No decision yet</span><strong>Run the pipeline to see results.</strong><p>The system will classify the call and recommend a next step.</p></div></div>
+          </div>
+        </div>
+      </section>
+      <section id="timeline" class="card">
+        <div class="section-head"><div><span class="eyebrow">Clinical memory</span><h3>Patient timeline</h3></div><button id="refreshTimelineBtn" class="btn btn-secondary" type="button">Refresh timeline</button></div>
+        <div id="timelineHeader" class="timeline-header">Select a patient to load the timeline.</div>
+        <div id="timelineList" class="timeline-list"></div>
+      </section>
+      <section id="architecture" class="card">
+        <div class="section-head"><div><span class="eyebrow">How it works</span><h3>Backend architecture</h3></div></div>
+        <div class="architecture-grid">
+          <div class="arch-box"><strong>1. Audio intake</strong><p>Browser upload or microphone recording reaches the FastAPI backend.</p></div>
+          <div class="arch-box"><strong>2. Audio normalization</strong><p>Backend converts audio into 16k mono WAV to make transcription stable.</p></div>
+          <div class="arch-box"><strong>3. Speech-to-text</strong><p>Faster-Whisper transcribes speech locally on your machine.</p></div>
+          <div class="arch-box"><strong>4. Healthcare correction</strong><p>Medication and symptom corrections improve raw STT output. Optional LLM cleanup can be enabled.</p></div>
+          <div class="arch-box"><strong>5. Triage engine</strong><p>Rules detect refill requests, medication side effects, and urgent symptom language.</p></div>
+          <div class="arch-box"><strong>6. Patient timeline</strong><p>Every call is stored in SQLite so clinicians have context between appointments.</p></div>
+        </div>
+        <div class="integration-note">
+          <h4>Where to add your own APIs</h4>
+          <p>For a stronger final demo, you can later swap the STT layer or post-processing layer. In the backend, edit <code>app/stt.py</code> for another transcription provider or enable LLM cleanup in <code>.env</code> and <code>app/openai_postprocess.py</code>.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

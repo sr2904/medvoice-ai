@@ -1,0 +1,7 @@
+.venv
+__pycache__/
+*.pyc
+.DS_Store
+backend/.env
+backend/carecaller.db
+backend/uploaded_audio/
