@@ -4,13 +4,17 @@
 
 **Real-time patient call analysis — speech to structured clinical insights**
 
-[![GitHub](https://img.shields.io/badge/GitHub-sr2904%2Fmedvoice--ai-blue?logo=github)](https://github.com/sr2904/medvoice_ai)
-[![Demo](https://img.shields.io/badge/Demo-YouTube-red?logo=youtube)](https://youtu.be/zr2TYypYerY)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-medvoiceai.vercel.app-black?logo=vercel)](https://medvoiceai.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-sr2904%2Fmedvoice--ai-blue?logo=github)](https://github.com/sr2904/medvoice-ai)[![Demo](https://img.shields.io/badge/Demo-YouTube-red?logo=youtube)](https://youtu.be/zr2TYypYerY)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-green?logo=fastapi)
 ![Deepgram](https://img.shields.io/badge/STT-Deepgram-purple)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-orange?logo=google)
-![LiveWebsite](https://medvoiceai.vercel.app)
+
+**🔗 Try it live: [medvoiceai.vercel.app](https://medvoiceai.vercel.app)**
+Upload a short voice recording of a patient describing a medication or symptom, and see the transcript, extracted entities, and triage priority.
+
+> Demo note: the database resets when the backend redeploys, and please don't upload real patient data.
 
 </div>
 
