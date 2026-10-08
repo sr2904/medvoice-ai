@@ -1,4 +1,4 @@
-   const API_BASE = "https://medvoice-ai-production-30e1.up.railway.app/api";
+const API_BASE = "https://medvoice-ai-production-30e1.up.railway.app/api";
 
 const patientSelect = document.getElementById("patientSelect");
 const patientSuggestions = document.getElementById("patientSuggestions");
