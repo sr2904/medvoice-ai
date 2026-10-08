@@ -10,6 +10,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-green?logo=fastapi)
 ![Deepgram](https://img.shields.io/badge/STT-Deepgram-purple)
 ![Gemini](https://img.shields.io/badge/AI-Gemini-orange?logo=google)
+![LiveWebsite](https://medvoiceai.vercel.app)
 
 </div>
 
